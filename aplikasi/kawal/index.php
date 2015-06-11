@@ -45,8 +45,8 @@ class Index extends Kawal
 		$this->papar->server = $_SERVER['SERVER_NAME'];
 
 		// pergi papar kandungan
-		//$this->papar->baca('index/index', 0 ); // untuk css
-		//$this->papar->baca('index/index', 1 ); // tanpa css
+		//$this->papar->baca('index/index'); // untuk twitter bootstrap
+		//$this->papar->baca('index/index', 1 ); // tanpa twitter bootstrap
 		$this->papar->baca('mobile/login', 'mobile');
 	}
 	
