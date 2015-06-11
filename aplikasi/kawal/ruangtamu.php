@@ -36,7 +36,8 @@ class Ruangtamu extends Kawal
 		$this->papar->pegawai = senarai_kakitangan();
 		$this->papar->tajuk = 'Ruangtamu';
 		// pergi papar kandungan
-		$this->papar->baca('ruangtamu/index', 0);
+		$this->papar->baca('ruangtamu/index'); // untuk twitter bootstrap
+		//$this->papar->baca('ruangtamu/index', 1); // tanpa twitter bootstrap
 		//$this->papar->baca('ruangtamu/index', 'mobile');
 		//$this->papar->baca('mobile/mobile');
 	}
