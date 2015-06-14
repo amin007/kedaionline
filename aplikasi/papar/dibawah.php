@@ -16,6 +16,8 @@ echo $theme = (isset($theme)) ? $theme : null;
 	</div>
 </footer>
 <?php require 'jquery.php'; ?>
+<?php require 'dibawah-notakaki.php'; ?>
+<?php require 'index/senarai_pesanan.php'; ?>
 
 </body>
 </html>
