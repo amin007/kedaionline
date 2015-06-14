@@ -22,11 +22,11 @@ elseif (in_array($level, $senaraiPengguna))
 	$paras = '' . Sesi::get('levelPegawai');
 else
 	$paras = null;
-$url = './';
+$url = URL;
 ?>
 <div class="container" style="margin-top:-20px;border: 2px solid #dfdfd0; border-radius:2px">
 	<!-- rangka atas -->
-	<nav class="navbar navbar-custom navbar-static-top">
+	<nav class="navbar navbar-custom">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 		<span class="sr-only">Toggle navigation</span>
@@ -34,11 +34,22 @@ $url = './';
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="./">
-			<img src="images/back/kuih.fw.png" width="70" height="40" alt="chef" style="margin-top:-10px"/>
+		<a class="navbar-brand" href="#" data-toggle="modal" data-target="#myCart">
+			<span><img alt="Brand" src="<?php echo $url ?>images/back/chart.fw.png" width="30" height="30" 
+			alt="chart">Shopping Cart</span>
 		</a>
+		<a class="navbar-brand" href="<?php echo $url ?>">
+			E-SME Food: A web based application for SME food for online shopping
+		</a>
+		
 	</div>
 	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav navbar-right">
+		<li><a href="#" class="btn btn-success btn-sm"
+		data-toggle="modal" data-target="#daftarAkaun">Daftar Akaun</a></li>
+		<li><a href="#" class="btn btn-navbar-custom"
+		data-toggle="modal" data-target="#logMasuk">Log Masuk</a></li>
+		</ul>
 	</div><!-- /.navbar-collapse -->
 	</nav>
 	<!-- end rangka atas -->
@@ -47,38 +58,6 @@ $url = './';
 	<div class="row" style=" margin-top:-10px">
 		<!-- menu kiri -->
 		<div class="col-md-3">
-<!-- senarai yang ada pada menu kiri /////////////////////////////////////////////////////////////// -->
-			<!--iklan -->
-			<div class="thumbnail none1">
-				<img src="images/back/discount-sale.jpg" alt="...">
-				<div class="caption">
-				<h3>Dapatkan Diskaun</h3>
-				<p>Harga Runtuh dengan Website Kami</p>
-				</div>
-			</div>
-			<!-- end iklan -->
-			
-			<!-- kategori makanan-->
-			<div class="col-xs-12 col-sm-12">
-				<div class="list-group none1">
-					<p href="#" class="list-group-item active"> Kategori Makanan </p>
-					<a href="../ringan/index.php" class="list-group-item">Makanan Ringan</a>
-					<a href="../kuih/index.php" class="list-group-item">Kuih Tradisional</a>
-					<a href="../sos/index.php" class="list-group-item">Sos Pencicah </a>
-					<a href="../pes/index.php" class="list-group-item">Pes Masakan</a>
-				</div>
-			</div>
-			<!-- end kategori makanan-->
-
-			<!--box info-->
-			<div class="col-lg-12 col-md-12">
-				<div class="list-group none1">
-					<p href="#" class="list-group-item active"> Infomasi </p>
-					<a href="../ringan/index.php" class="list-group-item">Tentang Kami</a>
-					<a href="../kuih/index.php" class="list-group-item">Hubungi Kami</a>
-				</div>
-			</div>
-			<!--end box info-->
-<!-- end senarai yang ada pada menu kiri /////////////////////////////////////////////////////////////// -->		
+<?php include 'index/menu_kiri.php'; ?>
 		</div>
 		<!-- end menu kiri -->
