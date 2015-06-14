@@ -3,12 +3,9 @@
 $kotak[0]='login_fancybox.txt'; 
 $kotak[1]='login_colorbox.txt'; 
 $login=$kotak[rand(0,1)];
-
 $isi=$this->isi;
-
 //include 'aset/am/' . $login;
-$lokasi = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/';
-?>
+$lokasi = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/'; ?>
 <!-- ----------------------------------------------------------------------------------- -->
 <table border="0" align="center">
 <tr><td align="center" valign="top"  colspan=2>
