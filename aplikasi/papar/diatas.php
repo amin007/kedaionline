@@ -3,9 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title><?php
-/*
- style="background: url('<?php echo GAMBAR ?>') no-repeat center center fixed;background-size: cover;"
-*/
+//style="background: url('<?php echo GAMBAR ?>') no-repeat center center fixed;background-size: cover;"
 // papar title
 echo Tajuk_Muka_Surat;
 
@@ -14,7 +12,7 @@ echo (empty($dpt_url[2])) ? null : '[' . $_GET['url'] . ']';
 ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
-$bootstrap = 'aset/bootstrap-3.3.4-dist/';
+$bootstrap = URL . 'aset/bootstrap-3.3.4-dist/';
 $css_url = $bootstrap . 'css/';
 $js_url  = $bootstrap . 'js/';
 $ico_url = $bootstrap . 'img/';
@@ -56,14 +54,7 @@ table.excel tbody td
 }
 </style>
 </head>  
-<body style="overflow-x: hidden">
-<!-- menu untuk login dan sign up -- # mula -->
-<ol class="breadcrumb" style=" height:40px">
+<body>
+<ol class="breadcrumb">
 	<li></li>
-	<li style="float:right"><a href="#" style="font-size:10px; font-family:'MS Serif', 'New York', serif; color: #79796A" 
-	data-toggle="modal" data-target="#myModal">Sign Up</a></li>
-	<li style="float:right"><a href="#" style="font-size:10px; font-family:'MS Serif', 'New York', serif; color: #79796A" 
-	data-toggle="modal" data-target="#myModa2">Login</a></li>
 </ol>
-<!-- menu untuk login dan sign up -- # tamat -->
-
