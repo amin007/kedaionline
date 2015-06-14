@@ -380,7 +380,13 @@ function kira($kiraan)
     return number_format($kiraan,0,'.',',');
 } 
 
-function kira2($dulu,$kini)
+function ringgit($kiraan)
+{
+    // pecahan kepada ratus
+    return number_format($kiraan,2,'.',',');
+} 
+
+function kirabanding($dulu,$kini)
 {
     // buat bandingan dan pecahan kepada ratus
     return @number_format((($kini-$dulu)/$dulu)*100,0,'.',',');
