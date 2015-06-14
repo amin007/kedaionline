@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title><?php
-//style="background: url('<?php echo GAMBAR ?>') no-repeat center center fixed;background-size: cover;"
+/*style="background: url('<?php echo GAMBAR ?>') no-repeat center center fixed;background-size: cover;"*/
 // papar title
 echo Tajuk_Muka_Surat;
 
