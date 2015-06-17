@@ -8,24 +8,21 @@ class Ruangtamu extends Kawal
 		parent::__construct();
         Kebenaran::kawalKeluar();
 
-		$this->papar->js = array(
-			'bootstrap-transition.js',
-			'bootstrap-alert.js',
-			'bootstrap-modal.js',
-			'bootstrap-dropdown.js',
-			'bootstrap-scrollspy.js',
-			'bootstrap-tab.js',
-			'bootstrap-tooltip.js',
-			'bootstrap-popover.js',
-			'bootstrap-button.js',
-			'bootstrap-collapse.js',
-			'bootstrap-carousel.js',
-			'bootstrap-typeahead.js',
-			'bootstrap-affix.js',
-			'bootstrap-datepicker.js',
-			'bootstrap-datepicker.ms.js');
-		$this->papar->css = array(
-			'bootstrap-datepicker.css');
+        $this->papar->js = array(
+            //'bootstrap.js',
+            'bootstrap-datepicker.js',
+            'bootstrap-datepicker.ms.js',
+            //'bootstrap-editable.min.js',
+			//'bootstrap-lightbox.js'
+			'../../js/function.js',
+			'../../js/pwd.js',
+			'../../lightbox/js/lightbox-2.6.min.js',);
+        $this->papar->css = array(
+			'bootstrap-datepicker.css',
+			'bootstrap-editable.css',
+			'../../css/navbar.css',
+			'../../css/style.css',
+			'../../lightbox/css/lightbox.css',);
 
 		$this->papar->menuatas = 'ya';
 	}
@@ -73,5 +70,5 @@ class Ruangtamu extends Kawal
 	{
 		$this->tanya->xhrDeleteListing();
 	}
-
+//*/
 }
