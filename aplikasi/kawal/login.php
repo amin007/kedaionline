@@ -47,8 +47,15 @@ class Login extends Kawal
 	
 	function masuk()
 	{
-		echo '<pre>'; print_r($_POST) . '</pre>';	
-		//$this->tanya->semakid();
+		# semak kod
+		/*echo '<pre>$_POST->'; print_r($_POST) . '</pre>| ';
+		echo 'Kod:' . Hash::rahsia('md5', $_POST['pengguna']['password']) . ': ';
+		//*/
+		# set pembolehubah
+		$email = bersih($_POST['pengguna']['email']);
+		$password = bersih($_POST['pengguna']['password']);
+		# masuj ke pangkalan data
+		$this->tanya->semakid($email,$password);
 	}
 	
 	function semakid()
