@@ -28,6 +28,20 @@ class Index extends Kawal
 	
 	function index() 
 	{
+		// masukkan tatasususunan dari Tanya
+		$this->papar->tawaran = $this->tanya->tawaran(
+			$myTable = null, $medan = null, 
+			$carian = null, $susun = null);
+		$this->papar->terkini = $this->tanya->terkini(
+			$myTable = null, $medan = null, 
+			$carian = null, $susun = null);
+		$this->papar->terlaris = $this->tanya->terlaris(
+			$myTable = null, $medan = null, 
+			$carian = null, $susun = null);
+		// semak tatasusunan $this->papar->produk
+		//echo '<pre>$this->papar->tawaran->'; print_r($this->papar->tawaran) . '</pre>';
+		//echo '<pre>$this->papar->terkini->'; print_r($this->papar->terkini) . '</pre>';
+		//echo '<pre>$this->papar->terlaris->'; print_r($this->papar->terlaris) . '</pre>';
 		// pergi papar kandungan
 		$this->papar->baca('index/gambar3'); // untuk twitter bootstrap
 		//$this->papar->baca('index/index'); // untuk twitter bootstrap
