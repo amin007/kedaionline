@@ -6,7 +6,31 @@ class Login_Tanya extends Tanya
 	{
 		parent::__construct();
 	}
+
+	public function daftarID($data, $myTable, $medanID= null)
+	{
+		//echo '<pre>$data->', print_r($data, 1) . '</pre>';
+		$senarai = null;
 		
+		foreach ($data as $medan => $nilai)
+		{
+			//$postData[$medan] = $nilai;
+			if ($medan == $medanID)
+				$cariID = $medan;
+			elseif ($medan != $medanID)
+				$senarai[] = ($nilai==null) ? " `$medan`=null" : " `$medan`='$nilai'"; 
+		}
+		
+		$senaraiData = implode(",\r",$senarai);
+		//$where = "`$cariID` = '{$data[$cariID]}' ";
+		
+		# set sql
+		$sql = " INSERT `$myTable` SET \r$senaraiData";
+		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
+		//$this->db->insert($sql);
+		$this->db->insertOld($myTable, $data[$myTable]);
+	}
+	
 	function semakid($email = null,$password = null)
 	{
 		$semakLogin = $this->db->prepare("
@@ -25,13 +49,13 @@ class Login_Tanya extends Tanya
 		$kira = $semakLogin->rowCount(); # kira jumlah data
 		//echo ' | $kira=' . $kira;
 		if ($kira == 1) # login berjaya 
-			$this->pergi($kira,$data);
+			$this->ruangtamu($kira,$data);
 		else # login gagal
 			header('location:' . URL . 'login/salah');	
 		//*/		
 	}
 	
-	function pergi($kira = null,$data = null)
+	function ruangtamu($kira = null,$data = null)
 	{
 		Sesi::init(); # setkan $_SESSION utk 
 		# namapenuh,namaPengguna,kataLaluan,level,email
