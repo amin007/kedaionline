@@ -140,7 +140,6 @@ class Index_Tanya extends Tanya
 			array('com'=>$carian . '2','code'=>2, 'pic'=>'maruku.jpg', 'title'=>'Maruku','offer'=>60, 'price'=>15),
 			array('com'=>$carian . '3','code'=>3, 'pic'=>'masmello.jpg', 'title'=>'Mellow','offer'=>27, 'price'=>23),
 		);
-	
 		return $produk;
 	}
 	
@@ -153,7 +152,6 @@ class Index_Tanya extends Tanya
 			array('com'=>'Tawar2','code'=>2, 'pic'=>'maruku.jpg', 'title'=>'Maruku','offer'=>60, 'price'=>15),
 			array('com'=>'Tawar3','code'=>3, 'pic'=>'masmello.jpg', 'title'=>'Mellow','offer'=>27, 'price'=>23),
 		);
-	
 		return $produk;
 	}
 	
@@ -183,6 +181,5 @@ class Index_Tanya extends Tanya
 		);
 		return $produk;
 	}
-
 //*/
 }
