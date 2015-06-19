@@ -55,20 +55,5 @@ class Ruangtamu extends Kawal
 		header('location: ' . URL);
 		//exit;
 	}
-	
-	function xhrInsert()
-	{
-		$this->tanya->xhrInsert();
-	}
-	
-	function xhrGetListings()
-	{
-		$this->tanya->xhrGetListings();
-	}
-	
-	function xhrDeleteListing()
-	{
-		$this->tanya->xhrDeleteListing();
-	}
 //*/
 }
