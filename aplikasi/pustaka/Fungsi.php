@@ -395,8 +395,7 @@ function kirabanding($dulu,$kini)
 
 function huruf($jenis, $papar)
 {
-    /*
-		huruf('BESAR', )
+    /*	huruf('BESAR', )
 		huruf('kecil', )
 		huruf('Depan', )
 		huruf('Besar_Depan', )
