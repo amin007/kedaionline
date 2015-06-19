@@ -69,8 +69,7 @@ class Kebenaran
 	}
 
 	public static function papar($_folder)
-	{
-		# pergi papar kandungan fungsi papar() dalam KAWAL
+	{	# pergi papar kandungan fungsi papar() dalam KAWAL
 		$senaraiPengguna = array('ahli','jurujual');
 		$senaraiPentadbir = array('pentadbir');
 		if (in_array(Sesi::get('levelPegawai'), $senaraiPentadbir)) 
@@ -78,7 +77,6 @@ class Kebenaran
 			$paras = 'Paras Pentadbir:' . Sesi::get('levelPegawai');
 			return $_folder . 'index';
 			//echo $paras . '<br>$this->lihat->baca(' . $_folder . 'index)';
-
 		}
 		elseif (in_array(Sesi::get('levelPegawai'), $senaraiPengguna)) 
 		{
@@ -91,12 +89,10 @@ class Kebenaran
 			$paras = null;
 			return 'ruangtamu/index';
 		}
-		# pergi papar kandungan fungsi papar() dalam KAWAL
 	}
 
 	public static function tambahSimpan($_folder)
-	{
-		# pergi papar kandungan tambahSimpan() dalam KAWAL
+	{	# pergi papar kandungan tambahSimpan() dalam KAWAL
 		$senaraiPengguna = array('ahli','jurujual');
 		$senaraiPentadbir = array('pentadbir');
 		if (in_array(Sesi::get('levelPegawai'), $senaraiPentadbir)) 
@@ -104,7 +100,6 @@ class Kebenaran
 			$paras = 'Paras Pentadbir:' . Sesi::get('levelPegawai');
 			header('location: ' . URL . $_folder . '');
 			//echo $paras . '<br>location: ' . URL . $_folder . '';
-
 		}
 		elseif (in_array(Sesi::get('levelPegawai'), $senaraiPengguna)) 
 		{
@@ -117,12 +112,10 @@ class Kebenaran
 			$paras = null;
 			header('location: ' . URL);
 		}
-		# pergi papar kandungan tambahSimpan() dalam KAWAL
 	}
 
 	public static function ubahSimpan($_folder, $ID)
-	{
-		# pergi papar kandungan ubahSimpan($medanID, $cariID) dalam KAWAL
+	{	# pergi papar kandungan ubahSimpan($medanID, $cariID) dalam KAWAL
 		$senaraiPengguna = array('ahli','jurujual');
 		$senaraiPentadbir = array('pentadbir');
 		if (in_array(Sesi::get('levelPegawai'), $senaraiPentadbir)) 
@@ -130,7 +123,6 @@ class Kebenaran
 			$paras = 'Paras Pentadbir:' . Sesi::get('levelPegawai');
 			header('location: ' . URL . $_folder . $ID);
 			//echo $paras . '<br>location: ' . URL . $_folder . $ID;
-
 		}
 		elseif (in_array(Sesi::get('levelPegawai'), $senaraiPengguna)) 
 		{
@@ -143,7 +135,6 @@ class Kebenaran
 			$paras = null;
 			header('location: ' . URL);
 		}
-		# pergi papar kandungan ubahSimpan($medanID, $cariID) dalam KAWAL
 	}
 //*/
 }
