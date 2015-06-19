@@ -5,7 +5,6 @@ class Kategori_Tanya extends Tanya
 	public function __construct() 
 	{
 		//parent::__construct();
-		//' WHERE ' . $medan . ' like %:cariID% ', array(':cariID' => $cariID));
 	}
 
 	private function dimana($carian)
@@ -59,7 +58,6 @@ class Kategori_Tanya extends Tanya
 		endif;
 	
 		return $where;
-	
 	}
 	
 	private function dibawah($carian)
@@ -157,8 +155,7 @@ class Kategori_Tanya extends Tanya
 		$senarai = null;
 		
 		foreach ($data as $medan => $nilai)
-		{
-			//$postData[$medan] = $nilai;
+		{	//$postData[$medan] = $nilai;
 			if ($medan == $medanID)
 				$cariID = $medan;
 			elseif ($medan != $medanID)
@@ -188,8 +185,7 @@ class Kategori_Tanya extends Tanya
 */
 	public function soal($myTable = null, $medan = null, $carian = null, $susun = null)
 	{
-		// senarai makanan
-		$produk = array(
+		$produk = array( // senarai makanan
 			array('com'=>$carian . '1','code'=>1, 'pic'=>'karipap.jpg', 'title'=>'Karipap','offer'=>0, 'price'=>25),
 			array('com'=>$carian . '2','code'=>2, 'pic'=>'maruku.jpg', 'title'=>'Maruku','offer'=>60, 'price'=>15),
 			array('com'=>$carian . '3','code'=>3, 'pic'=>'masmello.jpg', 'title'=>'Mellow','offer'=>27, 'price'=>23),
@@ -201,15 +197,13 @@ class Kategori_Tanya extends Tanya
 	public function tawaran($myTable = null, $medan = null, $carian = null, $susun = null)
 	{
 		# sql => "SELECT * FROM product WHERE special='1' ORDER BY id ASC LIMIT 3"
-		// senarai makanan
-		$produk = array(
+		$produk = array( // senarai makanan
 			array('com'=>'Tawar1','code'=>1, 'pic'=>'karipap.jpg', 'title'=>'Karipap','offer'=>40, 'price'=>25),
 			array('com'=>'Tawar2','code'=>2, 'pic'=>'maruku.jpg', 'title'=>'Maruku','offer'=>60, 'price'=>15),
 			array('com'=>'Tawar3','code'=>3, 'pic'=>'masmello.jpg', 'title'=>'Mellow','offer'=>27, 'price'=>23),
 		);
-	
+		
 		return $produk;
 	}
-
 //*/
 }
