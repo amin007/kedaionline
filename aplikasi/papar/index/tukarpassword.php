@@ -1,0 +1,1 @@
+<h1>Anda sudah berjaya tukar password baru</h1>
