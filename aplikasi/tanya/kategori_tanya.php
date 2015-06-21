@@ -7,6 +7,44 @@ class Kategori_Tanya extends Tanya
 		//parent::__construct();
 	}
 
+	private function jika($where,$atau,$medan,$fix,$cariApa)
+	{
+		if ($cariApa==null) 
+			$where .= " $atau`$medan` is null\r";
+		elseif($fix=='xnull')
+			$where .= " $atau`$medan` is not null \r";
+		elseif($fix=='x=')
+			$where .= " $atau`$medan` = '$cariApa'\r";
+		elseif($fix=='x!=')
+			$where .= " $atau`$medan` != '$cariApa'\r";
+		elseif($fix=='like')
+			$where .= " $atau`$medan` like '%$cariApa%'\r";	
+		elseif($fix=='xlike')
+			$where .= " $atau`$medan` not like '%$cariApa%'\r";	
+		elseif($fix=='like%')
+			$where .= " $atau`$medan` like '$cariApa%'\r";	
+		elseif($fix=='xlike%')
+			$where .= " $atau`$medan` not like '$cariApa%'\r";	
+		elseif($fix=='%like')
+			$where .= " $atau`$medan` like '%$cariApa'\r";	
+		elseif($fix=='x%like')
+			$where .= " $atau`$medan` not like '%$cariApa'\r";	
+		elseif($fix=='xin')
+			$where .= " $atau`$medan` not in $cariApa\r";						
+		elseif($fix=='khas')
+			$where .= " $atau`$medan` not like $cariApa\r";	
+		elseif($fix=='khas2')
+			$where .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa)\r";	
+		elseif($fix=='xkhas2')
+			$where .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa)\r";	
+		elseif($fix=='khas3')
+			$where .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
+		elseif($fix=='xkhas3')
+			$where .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";
+		
+		return $where;
+	}
+
 	private function dimana($carian)
 	{
 		//' WHERE ' . $medan . ' like %:cariID% ', array(':cariID' => $cariID));
@@ -21,39 +59,7 @@ class Kategori_Tanya extends Tanya
 				    $fix = isset($carian[$key]['fix'])   ? $carian[$key]['fix']        : null;			
 				$cariApa = isset($carian[$key]['apa'])   ? $carian[$key]['apa']        : null;
 				//echo "\r$key => ($fix) $atau $medan = '$apa'  ";
-				
-				if ($cariApa==null) 
-					$where .= " $atau`$medan` is null\r";
-				elseif($fix=='xnull')
-					$where .= " $atau`$medan` is not null \r";
-				elseif($fix=='x=')
-					$where .= " $atau`$medan` = '$cariApa'\r";
-				elseif($fix=='x!=')
-					$where .= " $atau`$medan` != '$cariApa'\r";
-				elseif($fix=='like')
-					$where .= " $atau`$medan` like '%$cariApa%'\r";	
-				elseif($fix=='xlike')
-					$where .= " $atau`$medan` not like '%$cariApa%'\r";	
-				elseif($fix=='like%')
-					$where .= " $atau`$medan` like '$cariApa%'\r";	
-				elseif($fix=='xlike%')
-					$where .= " $atau`$medan` not like '$cariApa%'\r";	
-				elseif($fix=='%like')
-					$where .= " $atau`$medan` like '%$cariApa'\r";	
-				elseif($fix=='x%like')
-					$where .= " $atau`$medan` not like '%$cariApa'\r";	
-				elseif($fix=='xin')
-					$where .= " $atau`$medan` not in $cariApa\r";						
-				elseif($fix=='khas')
-					$where .= " $atau`$medan` not like $cariApa\r";	
-				elseif($fix=='khas2')
-					$where .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa)\r";	
-				elseif($fix=='xkhas2')
-					$where .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa)\r";	
-				elseif($fix=='khas3')
-					$where .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
-				elseif($fix=='xkhas3')
-					$where .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
+				$where = $this->jika($where,$atau,$medan,$fix,$cariApa);
 			}
 		endif;
 	
