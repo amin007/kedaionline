@@ -49,9 +49,9 @@
 $dataURL = dpt_url();
 //echo '<pre>'; echo '<br>$dataURL:<br>'; print_r($dataURL); echo '</pre>';
 //$classKhas = array('infomasi','kategori');
-$classKhas = array('index');
-if ( isset($dataURL[0]) && ( in_array($dataURL[0],$classKhas) )) :
-?>			<!--special offer-->
+$classKhas = array(null,'index');
+if ( isset($dataURL[0]) && ( in_array($dataURL[0],$classKhas) )) :?>
+			<!--special offer-->
 <?php include 'tawaran_istimewa.php'; ?>
 			<!--end special offer-->
 <?php
