@@ -4,9 +4,47 @@ class Index_Tanya extends Tanya
 {
 	public function __construct() 
 	{
-		//parent::__construct();
+		parent::__construct();
 	}
 
+	private function jika($where,$atau,$medan,$fix,$cariApa)
+	{
+		if ($cariApa==null) 
+			$where .= " $atau`$medan` is null\r";
+		elseif($fix=='xnull')
+			$where .= " $atau`$medan` is not null \r";
+		elseif($fix=='x=')
+			$where .= " $atau`$medan` = '$cariApa'\r";
+		elseif($fix=='x!=')
+			$where .= " $atau`$medan` != '$cariApa'\r";
+		elseif($fix=='like')
+			$where .= " $atau`$medan` like '%$cariApa%'\r";	
+		elseif($fix=='xlike')
+			$where .= " $atau`$medan` not like '%$cariApa%'\r";	
+		elseif($fix=='like%')
+			$where .= " $atau`$medan` like '$cariApa%'\r";	
+		elseif($fix=='xlike%')
+			$where .= " $atau`$medan` not like '$cariApa%'\r";	
+		elseif($fix=='%like')
+			$where .= " $atau`$medan` like '%$cariApa'\r";	
+		elseif($fix=='x%like')
+			$where .= " $atau`$medan` not like '%$cariApa'\r";	
+		elseif($fix=='xin')
+			$where .= " $atau`$medan` not in $cariApa\r";						
+		elseif($fix=='khas')
+			$where .= " $atau`$medan` not like $cariApa\r";	
+		elseif($fix=='khas2')
+			$where .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa)\r";	
+		elseif($fix=='xkhas2')
+			$where .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa)\r";	
+		elseif($fix=='khas3')
+			$where .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
+		elseif($fix=='xkhas3')
+			$where .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";
+		
+		return $where;
+	}
+	
 	private function dimana($carian)
 	{
 		$where = null;
@@ -20,46 +58,14 @@ class Index_Tanya extends Tanya
 				    $fix = isset($carian[$key]['fix'])   ? $carian[$key]['fix']        : null;			
 				$cariApa = isset($carian[$key]['apa'])   ? $carian[$key]['apa']        : null;
 				//echo "\r$key => ($fix) $atau $medan = '$apa'  ";
-				
-				if ($cariApa==null) 
-					$where .= " $atau`$medan` is null\r";
-				elseif($fix=='xnull')
-					$where .= " $atau`$medan` is not null \r";
-				elseif($fix=='x=')
-					$where .= " $atau`$medan` = '$cariApa'\r";
-				elseif($fix=='x!=')
-					$where .= " $atau`$medan` != '$cariApa'\r";
-				elseif($fix=='like')
-					$where .= " $atau`$medan` like '%$cariApa%'\r";	
-				elseif($fix=='xlike')
-					$where .= " $atau`$medan` not like '%$cariApa%'\r";	
-				elseif($fix=='like%')
-					$where .= " $atau`$medan` like '$cariApa%'\r";	
-				elseif($fix=='xlike%')
-					$where .= " $atau`$medan` not like '$cariApa%'\r";	
-				elseif($fix=='%like')
-					$where .= " $atau`$medan` like '%$cariApa'\r";	
-				elseif($fix=='x%like')
-					$where .= " $atau`$medan` not like '%$cariApa'\r";	
-				elseif($fix=='xin')
-					$where .= " $atau`$medan` not in $cariApa\r";						
-				elseif($fix=='khas')
-					$where .= " $atau`$medan` not like $cariApa\r";	
-				elseif($fix=='khas2')
-					$where .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa)\r";	
-				elseif($fix=='xkhas2')
-					$where .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa)\r";	
-				elseif($fix=='khas3')
-					$where .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
-				elseif($fix=='xkhas3')
-					$where .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
+				$where = $this->jika($where,$atau,$medan,$fix,$cariApa);
 			}
 		endif;
 	
 		return $where;
 	
 	}
-	
+//*/	
 	private function dibawah($carian)
 	{
 		$susun = null;
@@ -151,7 +157,7 @@ class Index_Tanya extends Tanya
 			array('com'=>'Tawar1','code'=>1, 'pic'=>'karipap.jpg', 'title'=>'Karipap','offer'=>40, 'price'=>25),
 			array('com'=>'Tawar2','code'=>2, 'pic'=>'maruku.jpg', 'title'=>'Maruku','offer'=>60, 'price'=>15),
 			array('com'=>'Tawar3','code'=>3, 'pic'=>'masmello.jpg', 'title'=>'Mellow','offer'=>27, 'price'=>23),
-		);
+			);
 		return $produk;
 	}
 	
@@ -181,5 +187,39 @@ class Index_Tanya extends Tanya
 		);
 		return $produk;
 	}
+
+	public function daftar()
+	{
+		$input = array(
+			array('input-group-addon'=>'Nama Pengguna','type'=>'text','id'=>'namaPengguna', 'name'=>'pengguna[namaPengguna]', 'placeholder'=>'Nama Anda'),
+			array('input-group-addon'=>'Email Anda_','type'=>'text','id'=>'email', 'name'=>'pengguna[email]', 'placeholder'=>'Email Anda'),
+			array('input-group-addon'=>'Kata Laluan','type'=>'password','id'=>'kataLaluan', 'name'=>'pengguna[kataLaluan]', 'placeholder'=>'Kata Laluan'),
+			array('input-group-addon'=>'Ulang Kata Laluan','type'=>'password','id'=>'password2', 'name'=>'pengguna[password2]', 'placeholder'=>'Masuk Semula Kata Laluan'),
+		);
+		return $input;
+	}
+
+	public function login()
+	{
+		$input = array(
+			//array('input-group-addon'=>'Nama Pengguna','type'=>'text','id'=>'namaPengguna', 'name'=>'pengguna[namaPengguna]', 'placeholder'=>'Nama Anda'),
+			array('input-group-addon'=>'Email Anda_','type'=>'text','id'=>'email', 'name'=>'pengguna[email]', 'placeholder'=>'Email Anda'),
+			array('input-group-addon'=>'Kata Laluan','type'=>'password','id'=>'kataLaluan', 'name'=>'pengguna[kataLaluan]', 'placeholder'=>'Kata Laluan'),
+			//array('input-group-addon'=>'Ulang Kata Laluan','type'=>'password','id'=>'password2', 'name'=>'pengguna[password2]', 'placeholder'=>'Masuk Semula Kata Laluan'),
+		);
+		return $input;
+	}
+
+	public function ingat()
+	{
+		$input = array(
+			//array('input-group-addon'=>'Nama Pengguna','type'=>'text','id'=>'namaPengguna', 'name'=>'pengguna[namaPengguna]', 'placeholder'=>'Nama Anda'),
+			array('input-group-addon'=>'Email Anda_','type'=>'text','id'=>'email', 'name'=>'pengguna[email]', 'placeholder'=>'Email Anda'),
+			array('input-group-addon'=>'Kata Laluan','type'=>'password','id'=>'kataLaluan', 'name'=>'pengguna[kataLaluan]', 'placeholder'=>'Kata Laluan'),
+			array('input-group-addon'=>'Ulang Kata Laluan','type'=>'password','id'=>'password2', 'name'=>'pengguna[password2]', 'placeholder'=>'Masuk Semula Kata Laluan'),
+		);
+		return $input;
+	}
+
 //*/
 }
