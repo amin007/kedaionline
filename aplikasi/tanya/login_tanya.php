@@ -6,30 +6,6 @@ class Login_Tanya extends Tanya
 	{
 		parent::__construct();
 	}
-
-	public function daftarID($data, $myTable, $medanID= null)
-	{
-		//echo '<pre>$data->', print_r($data, 1) . '</pre>';
-		$senarai = null;
-		
-		foreach ($data as $medan => $nilai)
-		{
-			//$postData[$medan] = $nilai;
-			if ($medan == $medanID)
-				$cariID = $medan;
-			elseif ($medan != $medanID)
-				$senarai[] = ($nilai==null) ? " `$medan`=null" : " `$medan`='$nilai'"; 
-		}
-		
-		$senaraiData = implode(",\r",$senarai);
-		//$where = "`$cariID` = '{$data[$cariID]}' ";
-		
-		# set sql
-		$sql = " INSERT `$myTable` SET \r$senaraiData";
-		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
-		//$this->db->insert($sql);
-		$this->db->insertOld($myTable, $data[$myTable]);
-	}
 	
 	function semakid($email = null,$password = null)
 	{
@@ -67,5 +43,56 @@ class Login_Tanya extends Tanya
 		header('location:' . URL . 'ruangtamu');
 		//echo '<pre>$data->'; print_r($data) . '</pre>| ';
 	}
+	
+	public function daftarID($data, $myTable, $medanID= null)
+	{
+		//echo '<pre>$data->', print_r($data, 1) . '</pre>';
+		$senarai = null;
+		
+		foreach ($data as $medan => $nilai)
+		{
+			//$postData[$medan] = $nilai;
+			if ($medan == $medanID)
+				$cariID = $medan;
+			elseif ($medan != $medanID)
+				$senarai[] = ($nilai==null) ? " `$medan`=null" : " `$medan`='$nilai'"; 
+		}
+		
+		$senaraiData = implode(",\r",$senarai);
+		//$where = "`$cariID` = '{$data[$cariID]}' ";
+		
+		# set sql
+		$sql = " INSERT `$myTable` SET \r$senaraiData";
+		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
+		//$this->db->insert($sql);
+		$this->db->insertOld($myTable, $data);
+		header('location:' . URL . 'index/daftarahli');
+	}
+
+	public function ingatID($data, $myTable, $medanID=null)
+	{
+		//echo '<pre>$data->', print_r($data, 1) . '</pre>';
+		$senarai = null;
+		
+		foreach ($data as $medan => $nilai)
+		{
+			//$postData[$medan] = $nilai;
+			if ($medan == $medanID)
+				$cariID = $medan;
+			elseif ($medan != $medanID)
+				$senarai[] = ($nilai==null) ? " `$medan`=null" : " `$medan`='$nilai'"; 
+		}
+		
+		$senaraiData = implode(",\r",$senarai);
+		$where = "`$cariID` = '{$data[$cariID]}' ";
+		
+		# set sql
+		$sql = " UPDATE `$myTable` SET \r$senaraiData\r WHERE $where";
+		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
+		//$this->db->update($sql);
+		$this->db->updateOld($myTable, $data, $where);
+		header('location:' . URL . 'index/tukarpassword');
+	}
+
 //*/
 }
