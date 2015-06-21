@@ -38,8 +38,9 @@ if (!empty($produkTerlaris)) :
 		<img src="<?php echo $gambar . $produkTerlaris[$key]['pic']?>" alt="..." class="img-responsive" style="height:150px"></a>
 			<div class="caption">
 				<h4><?php echo $produkTerlaris[$key]['title'] ?></h4>
-				<div class="alert alert-warning"><?php 
-				echo $tawaran . $harga . "\n\t\t\t\t\t" ?></div>
+				<div class="alert alert-warning">
+				<?php echo $tawaran . $harga . "\n\t\t\t\t\t" 
+				?></div><?php echo "\n\t\t\t"; ?>
 			</div>
 		</div>
 	</div>
