@@ -48,7 +48,7 @@ class Login extends Kawal
 			if ( in_array($myTable,$semak) )
 				foreach ($value as $kekunci => $papar)
 					$posmen[$kekunci] = bersih($papar);
-					$posmen['level']  = 'ahli'; # ahli / jurujual
+					//$posmen['level']  = 'ahli'; # ahli / jurujual
 					
 		//echo '<pre>'; print_r($_POST) . '</pre>';
 		//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
@@ -63,15 +63,38 @@ class Login extends Kawal
 		endif;
 	}
 	
+	function ingat()
+	{
+        $posmen = array();
+		$semak = array('pengguna');
+		# semak data $_POST
+		foreach ($_POST as $myTable => $value)
+			if ( in_array($myTable,$semak) )
+				foreach ($value as $kekunci => $papar)
+					$posmen[$kekunci] = bersih($papar);
+					
+		//echo '<pre>'; print_r($_POST) . '</pre>';
+		//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
+		# semak password sama tak
+		if ($posmen['kataLaluan'] == $posmen['password2']):
+			unset($posmen['password2']);
+			$posmen['kataLaluan'] = Hash::rahsia('md5', $posmen['kataLaluan']);
+			//echo '<pre>$posmen lepas Hash::rahsia()='; print_r($posmen) . '</pre>';
+			$this->tanya->ingatID($posmen, $jadual = 'daftarmasuk', $medanID = 'email');
+		else:
+			echo 'password tidak sama';
+		endif;
+	}
+
 	function masuk()
 	{
 		# semak kod
 		/*echo '<pre>$_POST->'; print_r($_POST) . '</pre>| ';
-		echo 'Kod:' . Hash::rahsia('md5', $_POST['pengguna']['password']) . ': ';
+		echo 'Kod:' . Hash::rahsia('md5', $_POST['pengguna']['kataLaluan']) . ': ';
 		//*/
 		# set pembolehubah
 		$email = bersih($_POST['pengguna']['email']);
-		$password = bersih($_POST['pengguna']['password']);
+		$password = bersih($_POST['pengguna']['kataLaluan']);
 		# masuj ke pangkalan data
 		$this->tanya->semakid($email,$password);
 	}
@@ -87,7 +110,6 @@ class Login extends Kawal
 
 		// Set pemboleubah utama
 		$this->papar->sesat='Enjin Carian Ekonomi - Sesat';
-		$this->papar->isi='';
 
 		// pergi papar kandungan
 		$this->papar->baca('index/salah');
