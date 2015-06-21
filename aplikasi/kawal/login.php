@@ -48,7 +48,6 @@ class Login extends Kawal
 			if ( in_array($myTable,$semak) )
 				foreach ($value as $kekunci => $papar)
 					$posmen[$kekunci] = bersih($papar);
-					//$posmen['level']  = 'ahli'; # ahli / jurujual
 					
 		//echo '<pre>'; print_r($_POST) . '</pre>';
 		//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
